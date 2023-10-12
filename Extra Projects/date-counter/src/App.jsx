@@ -40,20 +40,50 @@ function Counter() {
     return (
         <div>
             <div>
-                <button onClick={plusStep}>+</button>
-                <span> Step : {step} </span>
-                <button onClick={minusStep}>-</button>
+                <input
+                    type="range"
+                    min="1"
+                    max="10"
+                    value={step}
+                    onChange={(e) => setStep(+e.target.value)}
+                />
+                <span>Step : {step} </span>
             </div>
             <br />
             <div>
                 <button onClick={plusCount}>+</button>
-                <span> count : {count} </span>
+                <input
+                    type="text"
+                    value={count}
+                    onChange={(e) => {
+                        setCount(+e.target.value);
+                    }}
+                />
                 <button onClick={minusCount}>-</button>
             </div>
 
             <p>
-                {count} Days from today is ~ {formatDate(date)}
+                {count} Days from Today is{' '}
+                <span
+                    style={{
+                        backgroundColor: 'black',
+                        color: 'white',
+                        padding: '0.4rem',
+                        borderRadius: '2px',
+                    }}
+                >
+                    {formatDate(date)}
+                </span>
             </p>
+
+            <button
+                onClick={() => {
+                    setCount(0);
+                    setStep(1);
+                }}
+            >
+                Reset
+            </button>
         </div>
     );
 }
