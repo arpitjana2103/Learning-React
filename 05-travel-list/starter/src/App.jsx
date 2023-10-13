@@ -1,22 +1,40 @@
 import {useState} from 'react';
 
-// const initialItems = [
-//     {id: 1, description: 'Passports', quantity: 2, packed: false},
-//     {id: 2, description: 'Socks', quantity: 12, packed: false},
-//     {id: 3, description: 'Charger', quantity: 1, packed: true},
-//     {id: 4, description: 'Glass', quantity: 2, packed: true},
-// ];
+const initialItems = [
+    {id: 1, description: 'Passports', quantity: 2, packed: false},
+    {id: 2, description: 'Socks', quantity: 12, packed: false},
+    {id: 3, description: 'Charger', quantity: 1, packed: true},
+    {id: 4, description: 'Glass', quantity: 2, packed: true},
+];
 
 function App() {
-    const [items, setItems] = useState([]);
-    function handleAddItems(item) {
+    const [items, setItems] = useState(initialItems);
+
+    function handleAddItem(item) {
         setItems((items) => [...items, item]);
     }
+
+    function handleDeleteItem(id) {
+        setItems((items) => items.filter((item) => item.id !== id));
+    }
+
+    function handleToggleItem(id) {
+        setItems((items) =>
+            items.map((item) =>
+                item.id === id ? {...item, packed: !item.packed} : item
+            )
+        );
+    }
+
     return (
         <div className="app">
             <Logo />
-            <Form onAddItems={handleAddItems} />
-            <PackingList items={items} />
+            <Form onAddItem={handleAddItem} />
+            <PackingList
+                items={items}
+                onDeleteItem={handleDeleteItem}
+                onToggleItem={handleToggleItem}
+            />
             <Stats />
         </div>
     );
@@ -31,7 +49,7 @@ function Logo() {
     );
 }
 
-function Form({onAddItems}) {
+function Form({onAddItem}) {
     const [description, setDescription] = useState('');
     const [quantity, setQuantity] = useState(1);
 
@@ -39,7 +57,7 @@ function Form({onAddItems}) {
         e.preventDefault();
         if (!description) return;
         const newItem = {description, quantity, packed: false, id: Date.now()};
-        onAddItems(newItem);
+        onAddItem(newItem);
         setDescription('');
         setQuantity(1);
     }
@@ -73,26 +91,36 @@ function Form({onAddItems}) {
     );
 }
 
-function PackingList({items}) {
+function PackingList({items, onDeleteItem, onToggleItem}) {
     return (
         <div className="list">
             <ul>
                 {items.map((item) => (
-                    <Item key={item.id} item={item} />
+                    <Item
+                        onDeleteItem={onDeleteItem}
+                        onToggleItem={onToggleItem}
+                        key={item.id}
+                        item={item}
+                    />
                 ))}
             </ul>
         </div>
     );
 }
 
-function Item({item}) {
+function Item({item, onDeleteItem, onToggleItem}) {
     const style = {textDecoration: 'line-through'};
     return (
         <li>
+            <input
+                type="checkbox"
+                checked={item.packed}
+                onChange={() => onToggleItem(item.id)}
+            />
             <span style={item.packed ? style : null}>
                 {item.quantity} {item.description}
             </span>
-            <button>❌</button>
+            <button onClick={() => onDeleteItem(item.id)}>❌</button>
         </li>
     );
 }
