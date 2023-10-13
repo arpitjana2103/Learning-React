@@ -68,7 +68,7 @@ function Counter() {
                     style={{
                         backgroundColor: 'black',
                         color: 'white',
-                        padding: '0.4rem',
+                        padding: '0.3rem 0.4rem',
                         borderRadius: '2px',
                     }}
                 >
@@ -76,14 +76,16 @@ function Counter() {
                 </span>
             </p>
 
-            <button
-                onClick={() => {
-                    setCount(0);
-                    setStep(1);
-                }}
-            >
-                Reset
-            </button>
+            {count !== 0 || step !== 1 ? (
+                <button
+                    onClick={() => {
+                        setCount(0);
+                        setStep(1);
+                    }}
+                >
+                    Reset
+                </button>
+            ) : null}
         </div>
     );
 }
