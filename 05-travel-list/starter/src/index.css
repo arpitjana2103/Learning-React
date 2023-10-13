@@ -6,8 +6,7 @@ const initialItems = [
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Quicksand:wght@500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -46,7 +45,7 @@ h1 {
 }
 
 .emoji {
-    font-family: 'Noto Emoji', sans-serif;
+    font-family: 'Noto Color Emoji', sans-serif;
 }
 
 .add-form {
