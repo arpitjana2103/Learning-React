@@ -8,7 +8,6 @@ const message = [
 
 export default function App() {
     const [step, setStep] = useState(1);
-
     const [isOpen, setIsOpen] = useState(true);
 
     function handlePrevious() {
@@ -34,9 +33,9 @@ export default function App() {
                         <div className={`${step >= 3 ? 'active' : ''}`}>3</div>
                     </div>
                     <p className="message">Hello</p>
-                    <p className="message">
-                        Step {step}: {message[step - 1]}
-                    </p>
+
+                    <StepMessage step={step}>{message[step - 1]}</StepMessage>
+
                     <div className="buttons">
                         <Button
                             textColor="#fff"
@@ -56,6 +55,14 @@ export default function App() {
                 </div>
             )}
         </>
+    );
+}
+
+function StepMessage({step, children}) {
+    return (
+        <p className="message">
+            Step {step}: {children}
+        </p>
     );
 }
 
