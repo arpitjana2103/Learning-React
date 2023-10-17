@@ -1,5 +1,13 @@
+import {useState} from 'react';
+
 import {NavBar} from './NavBar';
 import {Main} from './Main';
+import {Search} from './Search';
+import {NumResults} from './NumResults';
+import {Box} from './Box';
+import {MovieList} from './MovieList';
+import {WatchedMovieList} from './WatchedMovieList';
+import {WatchedSummery} from './WatchedSummery';
 
 export const tempMovieData = [
     {
@@ -22,7 +30,7 @@ export const tempMovieData = [
     },
 ];
 
-export const tempWatchedData = [
+const tempWatchedData = [
     {
         imdbID: 'tt1375666',
         Title: 'Inception',
@@ -44,10 +52,25 @@ export const tempWatchedData = [
 ];
 
 export default function App() {
+    const [movies, setMovies] = useState(tempMovieData);
+    const [watched, setWatched] = useState(tempWatchedData);
     return (
         <>
-            <NavBar />
-            <Main />
+            <NavBar>
+                <Search />
+                <NumResults movies={movies} />
+            </NavBar>
+
+            <Main movies={movies}>
+                <Box>
+                    <MovieList movies={movies} />
+                </Box>
+
+                <Box>
+                    <WatchedSummery watched={watched} />
+                    <WatchedMovieList watched={watched} />
+                </Box>
+            </Main>
         </>
     );
 }
