@@ -160,7 +160,6 @@ body {
 .list {
     list-style: none;
     padding: 0.8rem 0;
-    /* overflow: scroll; */
 }
 
 .list-watched {

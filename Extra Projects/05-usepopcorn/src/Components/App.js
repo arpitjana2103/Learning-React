@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import {NavBar} from './NavBar';
 import {Main} from './Main';
@@ -51,9 +51,23 @@ const tempWatchedData = [
     },
 ];
 
+const KEY = '933383e2';
+const OMDBURL = `https://www.omdbapi.com/?apikey=${KEY}`;
+
 export default function App() {
-    const [movies, setMovies] = useState(tempMovieData);
+    const [movies, setMovies] = useState([]);
     const [watched, setWatched] = useState(tempWatchedData);
+
+    useEffect(function () {
+        fetch(`${OMDBURL}&s=spider`)
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (data) {
+                setMovies(data.Search);
+            });
+    }, []);
+
     return (
         <>
             <NavBar>

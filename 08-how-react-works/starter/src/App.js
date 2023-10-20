@@ -70,9 +70,9 @@ function TabContent({item}) {
     }
 
     function handleTRippleInc() {
-        // setLikes(likes + 1);
-        // setLikes(likes + 1);
-        // setLikes(likes + 1);
+        setLikes(likes + 1);
+        setLikes(likes + 1);
+        setLikes(likes + 1);
         // setLikes((likes) => likes + 1);
         // setLikes((likes) => likes + 1);
         // setLikes((likes) => likes + 1);
