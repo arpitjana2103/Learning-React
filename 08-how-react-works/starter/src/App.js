@@ -40,7 +40,6 @@ function Tabbed({content}) {
 
             {activeTab <= 2 ? (
                 <TabContent
-                    key={content.at(activeTab).summary}
                     item={content.at(activeTab)}
                 />
             ) : (

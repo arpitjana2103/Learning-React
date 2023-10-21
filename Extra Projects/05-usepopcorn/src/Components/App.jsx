@@ -8,6 +8,7 @@ import {Box} from './Box';
 import {MovieList} from './MovieList';
 import {WatchedMovieList} from './WatchedMovieList';
 import {WatchedSummery} from './WatchedSummery';
+import {Loader} from './Loader';
 
 export const tempMovieData = [
     {
@@ -53,19 +54,34 @@ const tempWatchedData = [
 
 const KEY = '933383e2';
 const OMDBURL = `https://www.omdbapi.com/?apikey=${KEY}`;
+const QUERY = 'strpider';
 
 export default function App() {
     const [movies, setMovies] = useState([]);
-    const [watched, setWatched] = useState(tempWatchedData);
+    const [watched, setWatched] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(function () {
-        fetch(`${OMDBURL}&s=spider`)
-            .then(function (res) {
-                return res.json();
-            })
-            .then(function (data) {
+        return async function () {
+            try {
+                setIsLoading(true);
+                const res = await fetch(`${OMDBURL}&s=${QUERY}`);
+
+                if (!res.ok)
+                    throw new Error('⛔ Something went wrong in Fetching...');
+
+                const data = await res.json();
+
+                if (data.Response === 'False')
+                    throw new Error('😣 Movie Not Found.');
                 setMovies(data.Search);
-            });
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setIsLoading(false);
+            }
+        };
     }, []);
 
     return (
@@ -77,7 +93,10 @@ export default function App() {
 
             <Main movies={movies}>
                 <Box>
-                    <MovieList movies={movies} />
+                    {/* {isLoading ? <Loader /> :  <MovieList movies={movies} />} */}
+                    {isLoading && <Loader />}
+                    {error && <ErrorMessage message={error} />}
+                    {!isLoading && !error && <MovieList movies={movies} />}
                 </Box>
 
                 <Box>
@@ -87,4 +106,8 @@ export default function App() {
             </Main>
         </>
     );
+}
+
+function ErrorMessage({message}) {
+    return <p className="error">{message}</p>;
 }
