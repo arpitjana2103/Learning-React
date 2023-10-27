@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+
 :root {
     --color-primary: #6741d9;
     --color-primary-light: #7950f2;
@@ -53,6 +55,10 @@ body {
 
 /* ******* */
 
+.emoji {
+    font-family: 'Noto Color Emoji', sans-serif;
+}
+
 .nav-bar {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -72,8 +78,8 @@ body {
 }
 
 .box {
-    width: 42rem;
-    max-width: 42rem;
+    width: 44rem;
+    max-width: 47rem;
     background-color: var(--color-background-500);
     border-radius: 0.9rem;
     overflow-y: scroll;
@@ -99,7 +105,7 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0rem;
 }
 
 .logo span {
@@ -174,6 +180,7 @@ body {
     column-gap: 2.4rem;
     font-size: 1.6rem;
     align-items: center;
+    cursor: pointer;
 
     padding: 1.6rem 3.2rem;
     border-bottom: 1px solid var(--color-background-100);
