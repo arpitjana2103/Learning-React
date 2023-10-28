@@ -1,4 +1,4 @@
-import {useEffect, useReducer, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {Loader} from './Loader';
 import {StarRating} from './StarRating';
 import {useKey} from '../Hooks/useKey';
