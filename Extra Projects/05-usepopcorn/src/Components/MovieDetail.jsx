@@ -1,7 +1,10 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useReducer, useRef, useState} from 'react';
 import {Loader} from './Loader';
 import {StarRating} from './StarRating';
-import {OMDBURL} from './App';
+import {useKey} from '../Hooks/useKey';
+
+const KEY = '933383e2';
+const OMDBURL = `https://www.omdbapi.com/?apikey=${KEY}`;
 
 export function MovieDetail({
     selectedId,
@@ -13,9 +16,19 @@ export function MovieDetail({
     const [isLoading, setIsLoading] = useState(false);
     const [userRating, setUserRating] = useState('');
 
+    const countRef = useRef(0);
+
+    useEffect(
+        function () {
+            if (userRating) countRef.current = countRef.current + 1;
+        },
+        [userRating]
+    );
+
     function handleAddWatched() {
         movie.Runtime = Number(movie.Runtime.split(' ')[0]);
         movie.userRating = userRating;
+        movie.countRatingDecisions = countRef.current;
         onAddWatched(movie);
         onCloseMovieDetail();
     }
@@ -51,20 +64,22 @@ export function MovieDetail({
         [movie]
     );
 
-    useEffect(
-        function () {
-            function callBack(e) {
-                if (e.code === 'Escape') {
-                    onCloseMovieDetail();
-                }
-            }
-            document.addEventListener('keydown', callBack);
-            return function () {
-                document.removeEventListener('keydown', callBack);
-            };
-        },
-        [onCloseMovieDetail]
-    );
+    useKey('Escape', onCloseMovieDetail);
+
+    // useEffect(
+    //     function () {
+    //         function callBack(e) {
+    //             if (e.code === 'Escape') {
+    //                 onCloseMovieDetail();
+    //             }
+    //         }
+    //         document.addEventListener('keydown', callBack);
+    //         return function () {
+    //             document.removeEventListener('keydown', callBack);
+    //         };
+    //     },
+    //     [onCloseMovieDetail]
+    // );
 
     return (
         <div className="details">
