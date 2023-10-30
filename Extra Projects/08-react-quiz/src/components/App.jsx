@@ -4,13 +4,16 @@ import Main from './Main';
 import Loader from './Loader';
 import Error from './Error';
 import StartScreen from './StartScreen';
-import Questions from './Questions';
+import Question from './Question';
+import NextButton from './NextButton';
 
 const initialState = {
     questions: [],
     // 'loading', 'error', 'ready', 'active', 'finished'
     status: 'loading',
     index: 0,
+    answer: null,
+    points: 0,
 };
 
 function reducer(state, action) {
@@ -31,13 +34,30 @@ function reducer(state, action) {
                 ...state,
                 status: 'active',
             };
+        case 'newAnswer':
+            const question = state.questions.at(state.index);
+            return {
+                ...state,
+                answer: action.payload,
+                points:
+                    action.payload === question.correctOption
+                        ? state.points + question.points
+                        : state.points,
+            };
+        case 'nextQuestion':
+            return {
+                ...state,
+                index: state.index + 1,
+                answer: null,
+            };
+
         default:
             throw new Error('Action Unknown');
     }
 }
 
 function App() {
-    const [{questions, status, index}, dispatch] = useReducer(
+    const [{questions, status, index, answer}, dispatch] = useReducer(
         reducer,
         initialState
     );
@@ -68,9 +88,16 @@ function App() {
                         dispatch={dispatch}
                     />
                 )}
-                {status === 'active' && (
-                    <Questions question={questions[index]} />
-                )}
+                <>
+                    {status === 'active' && (
+                        <Question
+                            question={questions[index]}
+                            dispatch={dispatch}
+                            answer={answer}
+                        />
+                    )}
+                    <NextButton dispatch={dispatch} answer={answer} />
+                </>
             </Main>
         </div>
     );
