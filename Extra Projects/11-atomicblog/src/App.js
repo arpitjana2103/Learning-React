@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react';
 import {faker} from '@faker-js/faker';
-import {Header} from './Header.1';
-import {Main} from './Main';
-import {Archive} from './Archive';
-import {Footer} from './Footer';
+import {Header} from './components/Header';
+import {Main} from './components/Main';
+import {Archive} from './components/Archive';
+import {Footer} from './components/Footer';
+import {PostContext} from './Context';
 
 export function createRandomPost() {
     return {
@@ -48,24 +49,30 @@ function App() {
     );
 
     return (
-        <section>
-            <button
-                onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
-                className="btn-fake-dark-mode"
-            >
-                {isFakeDark ? '☀️' : '🌙'}
-            </button>
+        // 2) Provide Value to the Child Components
+        <PostContext.Provider
+            value={{
+                posts: searchedPosts,
+                onClearPosts: handleClearPosts,
+                onAddPost: handleAddPost,
+                searchQuery: searchQuery,
+                setSearchQuery: setSearchQuery,
+            }}
+        >
+            <section>
+                <button
+                    onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+                    className="btn-fake-dark-mode"
+                >
+                    {isFakeDark ? '☀️' : '🌙'}
+                </button>
 
-            <Header
-                posts={searchedPosts}
-                onClearPosts={handleClearPosts}
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-            />
-            <Main posts={searchedPosts} onAddPost={handleAddPost} />
-            <Archive onAddPost={handleAddPost} />
-            <Footer />
-        </section>
+                <Header />
+                <Main posts={searchedPosts} onAddPost={handleAddPost} />
+                <Archive onAddPost={handleAddPost} />
+                <Footer />
+            </section>
+        </PostContext.Provider>
     );
 }
 
