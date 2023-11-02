@@ -1,8 +1,7 @@
-import {useContext} from 'react';
-import {PostContext} from '../PostContext';
+import {usePost} from '../PostContext';
 
 export function Results() {
     // Consume Context
-    const {posts} = useContext(PostContext);
+    const {posts} = usePost();
     return <p>🚀 {posts.length} atomic posts found</p>;
 }
