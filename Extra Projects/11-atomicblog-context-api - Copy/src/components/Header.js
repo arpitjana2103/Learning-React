@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import {Results} from './Results';
 import {SearchPosts} from './SearchPosts';
-import {PostContext} from '../Context';
+import {PostContext} from '../PostContext';
 
 export function Header() {
     // Consume Context

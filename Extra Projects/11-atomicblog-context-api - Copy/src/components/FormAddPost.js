@@ -1,5 +1,5 @@
 import {useContext, useState} from 'react';
-import {PostContext} from '../Context';
+import {PostContext} from '../PostContext';
 
 export function FormAddPost() {
     const [title, setTitle] = useState('');

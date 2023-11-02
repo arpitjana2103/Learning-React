@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 import {List} from './List';
-import {PostContext} from '../Context';
+import {PostContext} from '../PostContext';
 
 export function Posts() {
     const {posts} = useContext(PostContext);

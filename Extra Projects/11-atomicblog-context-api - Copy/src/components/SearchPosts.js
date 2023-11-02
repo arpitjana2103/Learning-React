@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {PostContext} from '../Context';
+import {PostContext} from '../PostContext';
 
 export function SearchPosts() {
     // Consume Context
