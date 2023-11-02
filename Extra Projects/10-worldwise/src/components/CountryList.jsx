@@ -10,16 +10,12 @@ function CountryList({cities, isLoading}) {
         return <Message message="Add your first city by clicking on the Map" />;
     }
 
-    let countries = Object.values(
+    const countries = Object.values(
         cities.reduce(function (prev, curr) {
             prev[curr.country] = curr;
             return prev;
         }, {})
     );
-
-    // cities.forEach(function (city) {
-    //     countries[city.country] = city;
-    // });
 
     return (
         <ul className={styles.countryList}>
