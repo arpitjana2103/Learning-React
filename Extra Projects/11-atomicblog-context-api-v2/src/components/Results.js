@@ -1,4 +1,4 @@
-import {usePost} from '../PostContext';
+import {usePost} from '../PostProvider';
 
 export function Results() {
     // Consume Context

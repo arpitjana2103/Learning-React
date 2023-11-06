@@ -4,7 +4,7 @@ import {Header} from './components/Header';
 import {Main} from './components/Main';
 import {Archive} from './components/Archive';
 import {Footer} from './components/Footer';
-import {PostProvider} from './PostContext';
+import {PostProvider} from './PostProvider';
 
 export function createRandomPost() {
     return {
