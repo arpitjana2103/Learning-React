@@ -43,7 +43,7 @@ function City() {
             {notes && (
                 <div className={styles.row}>
                     <h6>Your notes</h6>
-                    <p>{notes}</p>
+                    <p className="emoji">{notes}</p>
                 </div>
             )}
 
