@@ -16,7 +16,9 @@ import {useUrlPosition} from '../hooks/useUrlPosition';
 
 function Map() {
     const {cities} = useCities();
-    const [mapPosition, setMapPosition] = useState([51.505, -0.09]);
+    const [mapPosition, setMapPosition] = useState([
+        28.591546198844522, 77.2119140625,
+    ]);
     const [mapLat, mapLng] = useUrlPosition();
 
     const {
@@ -57,7 +59,7 @@ function Map() {
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {cities.map(function (city) {
                     return (
@@ -81,7 +83,7 @@ function Map() {
 
 function ChangeCenter({position}) {
     const map = useMap();
-    map.setView(position, 10);
+    map.setView(position, 12);
     return null;
 }
 
