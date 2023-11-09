@@ -1,40 +1,64 @@
 {
-    "cities": [
-        {
-            "cityName": "Lisbon",
-            "country": "Portugal",
-            "emoji": "🇵🇹",
-            "date": "2027-10-31T15:59:59.138Z",
-            "notes": "My favorite city so far!",
-            "position": {
-                "lat": 38.727881642324164,
-                "lng": -9.140900099907554
-            },
-            "id": 73930385
-        },
-        {
-            "cityName": "Madrid",
-            "country": "Spain",
-            "emoji": "🇪🇸",
-            "date": "2027-07-15T08:22:53.976Z",
-            "notes": "",
-            "position": {
-                "lat": 40.46635901755316,
-                "lng": -3.7133789062500004
-            },
-            "id": 17806751
-        },
-        {
-            "cityName": "Berlin",
-            "country": "Germany",
-            "emoji": "🇩🇪",
-            "date": "2027-02-12T09:24:11.863Z",
-            "notes": "Amazing 😃",
-            "position": {
-                "lat": 52.53586782505711,
-                "lng": 13.376933665713324
-            },
-            "id": 98443197
-        }
-    ]
+  "cities": [
+    {
+      "cityName": "Mirzapur",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2023-11-09T05:35:02.356Z",
+      "notes": "TEST",
+      "position": {
+        "lat": "25.11082193360631",
+        "lng": "82.63916015625001"
+      },
+      "id": 73930386
+    },
+    {
+      "cityName": "Himali",
+      "country": "Nepal",
+      "emoji": "🇳🇵",
+      "date": "2023-11-09T05:35:21.532Z",
+      "notes": "TEST",
+      "position": {
+        "lat": "29.819691620285667",
+        "lng": "81.69433593750001"
+      },
+      "id": 73930387
+    },
+    {
+      "cityName": "Bijapur",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2023-11-09T05:36:25.891Z",
+      "notes": "TEST",
+      "position": {
+        "lat": "16.83794269745909",
+        "lng": "75.71640014648439"
+      },
+      "id": 73930388
+    },
+    {
+      "cityName": "Kasiani",
+      "country": "Bangladesh",
+      "emoji": "🇧🇩",
+      "date": "2023-11-09T05:36:59.503Z",
+      "notes": "TEST",
+      "position": {
+        "lat": "23.209487384607776",
+        "lng": "89.79400634765626"
+      },
+      "id": 73930389
+    },
+    {
+      "cityName": "Jigmechhoeling Gewog",
+      "country": "Bhutan",
+      "emoji": "🇧🇹",
+      "date": "2023-11-09T05:37:24.313Z",
+      "notes": "TEST",
+      "position": {
+        "lat": "27.055076304479147",
+        "lng": "90.57266235351562"
+      },
+      "id": 73930390
+    }
+  ]
 }
