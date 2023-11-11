@@ -1,5 +1,5 @@
 import {List} from './List';
-import {usePost} from '../PostProvider';
+import {usePost} from '../context/PostContext';
 
 export function Posts() {
     const {posts} = usePost();

@@ -2,7 +2,9 @@ import {useRef} from 'react';
 import {useKey} from '../Hooks/useKey';
 
 export function Search({query, setQuery}) {
+    
     const inputEl = useRef(null);
+
     useKey('Enter', function () {
         if (document.activeElement === inputEl.current) return;
         inputEl.current.focus();

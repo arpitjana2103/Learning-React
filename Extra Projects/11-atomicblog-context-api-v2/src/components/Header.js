@@ -1,6 +1,6 @@
 import {Results} from './Results';
 import {SearchPosts} from './SearchPosts';
-import {usePost} from '../PostProvider';
+import {usePost} from '../context/PostContext';
 
 export function Header() {
     // Consume Context

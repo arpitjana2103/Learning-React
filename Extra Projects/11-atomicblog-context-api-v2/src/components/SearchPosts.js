@@ -1,4 +1,4 @@
-import {usePost} from '../PostProvider';
+import {usePost} from '../context/PostContext';
 
 export function SearchPosts() {
     // Consume Context

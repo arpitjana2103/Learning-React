@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {createRandomPost} from '../App';
-import {usePost} from '../PostProvider';
+import {usePost} from '../context/PostContext';
 
 export function Archive() {
     const {onAddPost} = usePost();
