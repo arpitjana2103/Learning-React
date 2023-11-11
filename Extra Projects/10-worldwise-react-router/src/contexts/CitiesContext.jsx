@@ -1,5 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-import {createContext, useEffect, useContext, useReducer} from 'react';
+import {
+    createContext,
+    useEffect,
+    useContext,
+    useReducer,
+    useCallback,
+} from 'react';
 
 const CitiesContext = createContext();
 const URL = `http://localhost:8000`;
@@ -104,20 +110,23 @@ function CitiesProvider({children}) {
         }
     }
 
-    async function getCity(id) {
-        if (Number(id) === currentCity.id) return;
-        dispatch({type: 'loading'});
-        try {
-            const res = await fetch(`${URL}/cities/${id}`);
-            const data = await res.json();
-            dispatch({type: 'curr-city/loaded', payload: data});
-        } catch (error) {
-            dispatch({
-                type: 'rejected',
-                payload: 'There was an Error in loading city...',
-            });
-        }
-    }
+    const getCity = useCallback(
+        async function getCity(id) {
+            if (Number(id) === currentCity.id) return;
+            dispatch({type: 'loading'});
+            try {
+                const res = await fetch(`${URL}/cities/${id}`);
+                const data = await res.json();
+                dispatch({type: 'curr-city/loaded', payload: data});
+            } catch (error) {
+                dispatch({
+                    type: 'rejected',
+                    payload: 'There was an Error in loading city...',
+                });
+            }
+        },
+        [currentCity.id]
+    );
 
     async function deleteCity(id) {
         dispatch({type: 'loading'});
