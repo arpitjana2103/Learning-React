@@ -8,18 +8,21 @@ const initailState = {
 };
 
 const accountSlice = createSlice({
-    name: 'account',
     initialState: initailState,
-
+    name: 'account',
     reducers: {
-        deposit: function (state, action) {
-            state.balance += action.payload;
-            state.isLoading = false;
+        deposit: {
+            reducer: function (state, action) {
+                state.balance += action.payload;
+                state.isLoading = false;
+            },
         },
 
-        withdraw: function (state, action) {
-            if (state.balance < action.payload) return;
-            state.balance -= action.payload;
+        withdraw: {
+            reducer: function (state, action) {
+                if (state.balance < action.payload) return;
+                state.balance -= action.payload;
+            },
         },
 
         requestLoan: {
@@ -36,15 +39,19 @@ const accountSlice = createSlice({
             },
         },
 
-        payLoan: function (state, action) {
-            if (state.balance < state.loan) return;
-            state.balance -= state.loan;
-            state.loan = 0;
-            state.loanPurpose = '';
+        payLoan: {
+            reducer: function (state, action) {
+                if (state.balance < state.loan) return;
+                state.balance -= state.loan;
+                state.loan = 0;
+                state.loanPurpose = '';
+            },
         },
 
-        convertingCurrency(state, action) {
-            state.isLoading = true;
+        convertingCurrency: {
+            reducer: function (state, action) {
+                state.isLoading = true;
+            },
         },
     },
 });

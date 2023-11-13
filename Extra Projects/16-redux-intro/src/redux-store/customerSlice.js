@@ -7,26 +7,31 @@ const initialState = {
 };
 
 const customerSlice = createSlice({
-    name: 'customer',
     initialState: initialState,
-
+    name: 'customer',
     reducers: {
         createCustomer: {
             prepare: function (fullName, nationaleID) {
                 return {
-                    payload: {fullName, nationaleID},
+                    payload: {
+                        fullName: fullName,
+                        nationaleID: nationaleID,
+                        createdAt: new Date().toISOString(),
+                    },
                 };
             },
 
             reducer: function (state, action) {
                 state.fullName = action.payload.fullName;
                 state.nationaleID = action.payload.nationaleID;
-                state.createdAt = new Date().toISOString();
+                state.createdAt = action.payload.createdAt;
             },
         },
 
-        updateName: function (state, action) {
-            state.fullName = action.payload;
+        updateName: {
+            reducer: function (state, action) {
+                state.fullName = action.payload;
+            },
         },
     },
 });
