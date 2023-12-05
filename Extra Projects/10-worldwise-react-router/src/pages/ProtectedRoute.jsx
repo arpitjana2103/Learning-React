@@ -12,6 +12,7 @@ function ProtectedRoute({children}) {
         },
         [navigate, isAuthenticated]
     );
+
     return isAuthenticated ? children : null;
 }
 

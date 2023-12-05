@@ -18,7 +18,6 @@ import SpinnerFullPage from './components/SpinnerFullPage';
 // import PageNotFound from './pages/PageNotFound';
 // import Login from './pages/Login';
 // import AppLayout from './pages/AppLayout';
-
 // Lazy Loading the Pages || Breaking Bundle in Chunks
 
 const Homepage = lazy(() => import('./pages/Homepage'));
