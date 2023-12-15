@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {useGeolocation} from './hooks/useGeolocation';
 
 export default function App() {
+    // https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=precipitation,rain,showers,snowfall
     const [countClicks, setCountClicks] = useState(0);
     const {
         isLoading,
